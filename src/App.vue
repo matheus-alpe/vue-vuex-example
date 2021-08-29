@@ -9,6 +9,7 @@
 
     <div class="container">
       <Contador />
+      <TarefasLista />
     </div>
     
   </div>
@@ -16,11 +17,13 @@
 
 <script>
 import Contador from '@/components/Contador.vue'
+import TarefasLista from '@/components/TarefasLista.vue'
 
 export default {
   name: 'App',
   components: {
-    Contador
+    Contador,
+    TarefasLista
   }
 }
 </script>
