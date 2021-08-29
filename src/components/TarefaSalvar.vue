@@ -58,6 +58,12 @@ export default {
             const operacao = !this.tarefa ? 'criar' : 'editar'
             console.log('Operação: ', operacao)
         }
+    },
+
+    created() {
+        if (!this.tarefa) return
+        // usando getter com closure
+        console.log('Tarefa por id:', this.$store.getters.buscarTarefaPorId(this.tarefa.id))
     }
 }
 </script>
