@@ -49,10 +49,13 @@
 
 <script>
 // import { mapState, mapGetters, mapMutations } from 'vuex'
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
 
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
+
+
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers('tarefas')
 
 export default {
     components: {
@@ -68,8 +71,8 @@ export default {
 
     computed: {
         //map namespaced module
-        ...mapState('tarefas', ['tarefas']),
-        ...mapGetters('tarefas', [
+        ...mapState(['tarefas']),
+        ...mapGetters([
             'tarefasConcluidas',
             'tarefasParaFazer', 
             'totalTarefasConcluidas'
@@ -87,7 +90,7 @@ export default {
         //     }
         // }),
 
-        ...mapActions('tarefas', ['listarTarefas']),
+        ...mapActions(['listarTarefas']),
         
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
