@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
@@ -75,6 +75,16 @@ export default {
     },
 
     methods: {
+        ...mapMutations(['listarTarefas']),
+        // mutation com alias
+        // ...mapMutations({
+        //     carregarTarefas: 'listarTarefas',
+        //     loadTasks: (commit, payload, options) => {
+        //         // do thing
+        //         commit('listarTarefas', payload, options)
+        //     }
+        // }),
+        
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
                 this.tarefaSelecionada = undefined
@@ -90,6 +100,18 @@ export default {
             this.exibirFormulario = false
             this.tarefaSelecionada = undefined
         }
+    },
+
+    created() {
+        setTimeout(() => 
+            this.listarTarefas([
+            // this.carregarTarefas([
+            // this.loadTasks([
+                { id: 1, titulo: 'Aprender Vue', concluido: true },
+                { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+                { id: 3, titulo: 'Aprender Vuex', concluido: false }
+            ])
+        , 1000)
     }
 }
 </script>
