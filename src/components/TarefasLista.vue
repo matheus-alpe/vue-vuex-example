@@ -48,7 +48,8 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+// import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
@@ -75,15 +76,17 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['listarTarefas']),
+        // ...mapMutations(['setTarefas']),
         // mutation com alias
         // ...mapMutations({
-        //     carregarTarefas: 'listarTarefas',
+        //     carregarTarefas: 'setTarefas',
         //     loadTasks: (commit, payload, options) => {
         //         // do thing
-        //         commit('listarTarefas', payload, options)
+        //         commit('setTarefas', payload, options)
         //     }
         // }),
+
+        ...mapActions(['listarTarefas']),
         
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
@@ -102,16 +105,18 @@ export default {
         }
     },
 
-    created() {
-        setTimeout(() => 
-            this.listarTarefas([
-            // this.carregarTarefas([
-            // this.loadTasks([
-                { id: 1, titulo: 'Aprender Vue', concluido: true },
-                { id: 2, titulo: 'Aprender Vue Router', concluido: true },
-                { id: 3, titulo: 'Aprender Vuex', concluido: false }
-            ])
-        , 1000)
+    async created() {
+        // this.setTarefas([
+        // // this.carregarTarefas([
+        // // this.loadTasks([
+        //     { id: 1, titulo: 'Aprender Vue', concluido: true },
+        //     { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+        //     { id: 3, titulo: 'Aprender Vuex', concluido: false }
+        // ])
+
+        //actions
+        await this.listarTarefas()
+        console.log('Actions executadas!')
     }
 }
 </script>

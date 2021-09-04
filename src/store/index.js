@@ -21,10 +21,32 @@ export default new Vuex.Store({
 
     // mutations = responsável pela atualização do state
     mutations: {
-        // before state snapshot
-        listarTarefas(state, payload) {
+        // não pode ser assíncrono
+        setTarefas(state, payload) {
             state.tarefas = payload
         }
-        // after state snapshot
+    },
+
+    // actions = methods (que usam mutations para alterar o state)
+    actions: {
+        buscarTarefas: () => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve([
+                        { id: 1, titulo: 'Aprender Vue', concluido: true },
+                        { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+                        { id: 3, titulo: 'Aprender Vuex', concluido: false }
+                    ])
+                }, 2000)
+            })
+        },
+        
+        listarTarefas: async (context) => {
+            console.log('Actions: listarTarefas')
+            const tarefas = await context.dispatch('buscarTarefas')
+            console.log('Mutation: setTarefas')
+            context.commit('setTarefas', tarefas)
+        },
+
     }
 })
