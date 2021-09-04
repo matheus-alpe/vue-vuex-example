@@ -7,9 +7,13 @@ import tarefas from './modules/tarefas'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     modules: {
         contador,
         tarefas
     }
 })
+
+console.log('Store:', store)
+
+export default store;
