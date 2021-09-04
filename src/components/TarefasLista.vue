@@ -67,8 +67,9 @@ export default {
     },
 
     computed: {
-        ...mapState(['tarefas']),
-        ...mapGetters([
+        //map namespaced module
+        ...mapState('tarefas', ['tarefas']),
+        ...mapGetters('tarefas', [
             'tarefasConcluidas',
             'tarefasParaFazer', 
             'totalTarefasConcluidas'
@@ -86,7 +87,7 @@ export default {
         //     }
         // }),
 
-        ...mapActions(['listarTarefas']),
+        ...mapActions('tarefas', ['listarTarefas']),
         
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {

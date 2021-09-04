@@ -63,7 +63,7 @@ export default {
     created() {
         if (!this.tarefa) return
         // usando getter com closure
-        console.log('Tarefa por id:', this.$store.getters.buscarTarefaPorId(this.tarefa.id))
+        console.log('Tarefa por id:', this.$store.getters['tarefas/buscarTarefaPorId'](this.tarefa.id))
     }
 }
 </script>
