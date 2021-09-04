@@ -6,7 +6,10 @@ export default {
 
     // getters = computed
     getters: {
-        tarefasConcluidas: state => state.tarefas.filter(tarefa => tarefa.concluido),
+        tarefasConcluidas: (state, getters, rootState, rootGetters) => {
+            console.log('Getters - state:', state, '\nrootState:', rootState, '\nrootGetters:', rootGetters)
+            return state.tarefas.filter(tarefa => tarefa.concluido)
+        },
         tarefasParaFazer: state => state.tarefas.filter(tarefa => !tarefa.concluido),
         totalTarefasConcluidas: (state, getters) => getters.tarefasConcluidas.length,
         // closure
@@ -36,6 +39,8 @@ export default {
         },
         
         listarTarefas: async (context) => {
+            console.log('Actions - state:', context.state, '\nActions - getters:', context.getters, '\nrootState:', context.rootState, '\nrootGetters:', context.rootGetters)
+
             console.log('Actions: listarTarefas')
             const tarefas = await context.dispatch('buscarTarefas')
             console.log('Mutation: setTarefas')

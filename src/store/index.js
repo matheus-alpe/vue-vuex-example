@@ -8,6 +8,9 @@ import tarefas from './modules/tarefas'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+    state: {
+        usuario: 'Matheus Alves'
+    },
     modules: {
         contador,
         tarefas
