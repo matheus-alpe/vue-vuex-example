@@ -11,6 +11,11 @@ const store = new Vuex.Store({
     state: {
         usuario: 'Matheus Alves'
     },
+
+    getters: {
+        mensagemBoasVindas: state => `Olá ${state.usuario}`
+    },
+
     modules: {
         contador,
         tarefas

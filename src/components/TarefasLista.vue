@@ -75,7 +75,8 @@ export default {
         ...mapGetters([
             'tarefasConcluidas',
             'tarefasParaFazer', 
-            'totalTarefasConcluidas'
+            'totalTarefasConcluidas',
+            'boasVindas'
         ]),
     },
 
@@ -121,6 +122,8 @@ export default {
         //actions
         await this.listarTarefas()
         console.log('Actions executadas!')
+
+        console.log('Boas vindas:', this.boasVindas)
     }
 }
 </script>

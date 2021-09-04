@@ -16,7 +16,14 @@ export default {
         tarefasParaFazer: state => state.tarefas.filter(tarefa => !tarefa.concluido),
         totalTarefasConcluidas: (state, getters) => getters.tarefasConcluidas.length,
         // closure
-        buscarTarefaPorId: (state) => (id) => state.tarefas.find(tarefa => tarefa.id === id)
+        buscarTarefaPorId: (state) => (id) => state.tarefas.find(tarefa => tarefa.id === id),
+        boasVindas: (state, getters, rootState, rootGetters) => {
+            // state.tarefas
+            // getters.tarefasParaFazer
+            console.log('State Global:', rootState.usuario)
+            console.log('Getter Global:', rootState.mensagemBoasVindas)
+            return rootGetters.mensagemBoasVindas
+        }
     },
 
     // mutations = responsável pela atualização do state
