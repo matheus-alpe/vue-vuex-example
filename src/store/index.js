@@ -9,11 +9,23 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        usuario: 'Matheus Alves'
+        usuario: 'Matheus'
     },
 
     getters: {
         mensagemBoasVindas: state => `Olá ${state.usuario}`
+    },
+
+    mutations: {
+        setUsuario: (state, usuario) => {
+            state.usuario = usuario
+        }
+    },
+
+    actions: {
+        logar: ({ commit }, usuario) => {
+            commit('setUsuario', usuario)
+        }
     },
 
     modules: {

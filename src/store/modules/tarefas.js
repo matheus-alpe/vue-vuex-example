@@ -55,6 +55,13 @@ export default {
             const tarefas = await context.dispatch('buscarTarefas')
             console.log('Mutation: setTarefas')
             context.commit('setTarefas', tarefas)
+
+
+            // root stuff
+            //execute mutation root
+            context.commit('setUsuario', 'Matheus Alves', { root: true })
+            //execute action root
+            context.dispatch('logar', 'Matheus Alves', { root: true })
         },
     }
 }
