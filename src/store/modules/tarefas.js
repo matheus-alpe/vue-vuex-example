@@ -1,4 +1,7 @@
 export default {
+    // encapsula o escopo do módulo
+    namespaced: true,
+
     // state = data
     state: {
         tarefas: []
