@@ -3,8 +3,8 @@ import Vuex from 'vuex';
 
 // Modules
 import global from './global'
-import contador from './modules/contador'
-import tarefas from './modules/tarefas'
+import contador from '@/resources/contador/_store'
+import tarefas from '@/resources/tarefas/_store'
 
 Vue.use(Vuex)
 

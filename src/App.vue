@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import Contador from '@/components/Contador.vue'
-import TarefasLista from '@/components/TarefasLista.vue'
+import Contador from '@/resources/contador/_components/Contador.vue'
+import TarefasLista from '@/resources/tarefas/_components/TarefasLista.vue'
 
 export default {
   name: 'App',
