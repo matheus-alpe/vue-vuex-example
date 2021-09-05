@@ -1,1 +1,4 @@
-export const SET_TAREFAS = 'SET_TAREFAS'
+export const SETUP_TAREFAS = 'SETUP_TAREFAS'
+export const CREATE_TAREFA = 'CREATE_TAREFA'
+export const UPDATE_TAREFA = 'UPDATE_TAREFA'
+export const DELETE_TAREFA = 'DELETE_TAREFA'

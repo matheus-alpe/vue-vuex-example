@@ -19,8 +19,8 @@ export default {
 
         console.log('Actions: listarTarefas')
         const tarefas = await context.dispatch('buscarTarefas')
-        console.log('Mutation:', types.SET_TAREFAS)
-        context.commit(types.SET_TAREFAS, tarefas)
+        console.log('Mutation:', types.SETUP_TAREFAS)
+        context.commit(types.SETUP_TAREFAS, tarefas)
 
 
         // root stuff
