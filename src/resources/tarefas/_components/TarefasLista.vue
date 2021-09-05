@@ -85,16 +85,6 @@ export default {
     },
 
     methods: {
-        // ...mapMutations(['setTarefas']),
-        // mutation com alias
-        // ...mapMutations({
-        //     carregarTarefas: 'setTarefas',
-        //     loadTasks: (commit, payload, options) => {
-        //         // do thing
-        //         commit('setTarefas', payload, options)
-        //     }
-        // }),
-
         ...mapActions(['listarTarefas']),
         
         exibirFormularioCriarTarefa() {
@@ -117,14 +107,6 @@ export default {
     async created() {
         // Registrando uso do módulo
         register(this.$store)
-
-        // this.setTarefas([
-        // // this.carregarTarefas([
-        // // this.loadTasks([
-        //     { id: 1, titulo: 'Aprender Vue', concluido: true },
-        //     { id: 2, titulo: 'Aprender Vue Router', concluido: true },
-        //     { id: 3, titulo: 'Aprender Vuex', concluido: false }
-        // ])
 
         //actions
         await this.listarTarefas()

@@ -1,3 +1,5 @@
+import * as types from './mutation-types'
+
 // actions = methods (que usam mutations para alterar o state)
 export default {
     buscarTarefas: () => {
@@ -17,8 +19,8 @@ export default {
 
         console.log('Actions: listarTarefas')
         const tarefas = await context.dispatch('buscarTarefas')
-        console.log('Mutation: setTarefas')
-        context.commit('setTarefas', tarefas)
+        console.log('Mutation:', types.SET_TAREFAS)
+        context.commit(types.SET_TAREFAS, tarefas)
 
 
         // root stuff
