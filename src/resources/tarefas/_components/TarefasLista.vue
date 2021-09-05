@@ -51,6 +51,10 @@
 // import { mapState, mapGetters, mapMutations } from 'vuex'
 import { createNamespacedHelpers } from 'vuex'
 
+// Module Register
+import register from '../_store/register'
+
+// Component
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
 
@@ -111,6 +115,9 @@ export default {
     },
 
     async created() {
+        // Registrando uso do módulo
+        register(this.$store)
+
         // this.setTarefas([
         // // this.carregarTarefas([
         // // this.loadTasks([
