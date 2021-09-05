@@ -5,7 +5,8 @@
         <button 
             class="btn btn-sm mr-4" 
             :class="classeCSS" 
-            :title="textoBotaoConcluido">
+            :title="textoBotaoConcluido"
+            @click="$emit('concluir', tarefa)">
                 <i class="fa fa-check"></i>
         </button>
         <button 
@@ -16,7 +17,8 @@
         </button>
         <button 
             class="btn btn-danger btn-sm" 
-            title="Deletar">
+            title="Deletar"
+            @click="$emit('deletar', tarefa)">
                 <i class="fa fa-trash"></i>
         </button>
     </li>

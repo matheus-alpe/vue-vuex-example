@@ -1,4 +1,6 @@
 // state = data
 export default {
-    tarefas: []
+    tarefas: [],
+    tarefaSelecionada: undefined,
+    erro: undefined
 }

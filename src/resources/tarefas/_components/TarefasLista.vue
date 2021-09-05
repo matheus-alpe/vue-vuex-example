@@ -22,7 +22,9 @@
                 v-for="tarefa in tarefasParaFazer"
                 :key="tarefa.id"
                 :tarefa="tarefa"
-                @editar="selecionarTarefaParaEdicao" />
+                @editar="selecionarTarefaParaEdicao"
+                @concluir="concluirTarefa"
+                @deletar="confirmarRemocao" />
         </ul>
 
         <p v-else>Nenhuma tarefa a fazer.</p>
@@ -34,15 +36,18 @@
                 v-for="tarefa in tarefasConcluidas"
                 :key="tarefa.id"
                 :tarefa="tarefa"
-                @editar="selecionarTarefaParaEdicao" />
+                @editar="selecionarTarefaParaEdicao" 
+                @concluir="concluirTarefa"
+                @deletar="confirmarRemocao" />
         </ul>
 
         <p v-else>Nenhuma tarefa a fazer.</p>
 
         <TarefaSalvar
             v-if="exibirFormulario"
-            :tarefa="tarefaSelecionada" />
+            @salvar="salvarTarefa" />
 
+        <div class="alert alert-danger" v-if="erro">{{ erro.message }}</div>
 
     </div>
 </template>
@@ -69,13 +74,15 @@ export default {
     data() {
         return {
             exibirFormulario: false,
-            tarefaSelecionada: undefined,
         }
     },
 
     computed: {
         //map namespaced module
-        ...mapState(['tarefas']),
+        ...mapState([
+            'tarefaSelecionada',
+            'erro'    
+        ]),
         ...mapGetters([
             'tarefasConcluidas',
             'tarefasParaFazer', 
@@ -85,22 +92,47 @@ export default {
     },
 
     methods: {
-        ...mapActions(['listarTarefas']),
+        ...mapActions([
+            'concluirTarefa',
+            'criarTarefa',
+            'editarTarefa',
+            'listarTarefas',
+            'deletarTarefa',
+            'selecionarTarefa',
+            'resetarTarefaSelecionada'
+        ]),
+
+        confirmarRemocao(tarefa) {
+            const confirmar = window.confirm('Deseja deletar essa tarefa?')
+            if (!confirmar) return
+            this.deletarTarefa(tarefa)
+        },
         
         exibirFormularioCriarTarefa() {
             if (this.tarefaSelecionada) {
-                this.tarefaSelecionada = undefined
+                this.resetarTarefaSelecionada()
                 return
             }
             this.exibirFormulario = !this.exibirFormulario
         },
+        async salvarTarefa({ operacao, tarefa }) {
+            switch(operacao) {
+                case 'criar':
+                    await this.criarTarefa(tarefa)
+                    break
+                case 'editar':
+                    await this.editarTarefa(tarefa)
+                    break
+            }
+            this.resetar()
+        },
         selecionarTarefaParaEdicao(tarefa) {
             this.exibirFormulario = true
-            this.tarefaSelecionada = tarefa
+            this.selecionarTarefa(tarefa)
         },
         resetar() {
             this.exibirFormulario = false
-            this.tarefaSelecionada = undefined
+            this.resetarTarefaSelecionada()
         }
     },
 
@@ -110,9 +142,6 @@ export default {
 
         //actions
         await this.listarTarefas()
-        console.log('Actions executadas!')
-
-        console.log('Boas vindas:', this.boasVindas)
     }
 }
 </script>
